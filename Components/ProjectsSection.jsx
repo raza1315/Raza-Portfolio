@@ -45,8 +45,8 @@ const projects = [
         link: "https://devpost.com/software/momsnest",
     },
     {
-        title: "EpiCare",
-        description: "EpiCare is a comprehensive health management application designed to empower individuals with epilepsy through efficient tracking, real-time support, and accessible healthcare solutions. Leveraging modern technologies and a user-centric approach, EpiCare ensures seamless management of health data while fostering a supportive community.",
+        title: "MigraineEase",
+        description: "MigraineEase is a comprehensive health management application designed to empower individuals with Migraine through efficient tracking, real-time support, and accessible healthcare solutions. Leveraging modern technologies and a user-centric approach, MigraineEase ensures seamless management of health data while fostering a supportive community.",
         image: "/projects/e1.png",
         screenshots: [
             "/projects/e1.png",
@@ -55,6 +55,7 @@ const projects = [
             "/projects/e4.png",
             "/projects/e5.png",
             "/projects/e6.png",
+            "/projects/e7.png",
         ],
         tech: [
             "React Native",
@@ -70,7 +71,7 @@ const projects = [
             "Twilio",
             "CDN",
         ],
-        link: "https://github.com/Zeba0316/epicare",
+        link: "https://github.com/raza1315/MigraineEase",
     },
     {
         title: "CoolFizz",
@@ -140,7 +141,29 @@ const projects = [
 const ProjectsSection = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [drawerApi, setDrawerApi] = useState(null);
+    const [drawerCurrent, setDrawerCurrent] = useState(0);
+    const [drawerCount, setDrawerCount] = useState(0);
     const scrollRef = useRef(null);
+
+    // Track drawer carousel state
+    React.useEffect(() => {
+        if (!drawerApi) return;
+        setDrawerCount(drawerApi.scrollSnapList().length);
+        setDrawerCurrent(drawerApi.selectedScrollSnap());
+        drawerApi.on("select", () => {
+            setDrawerCurrent(drawerApi.selectedScrollSnap());
+        });
+    }, [drawerApi]);
+
+    // Reset drawer state when project changes
+    React.useEffect(() => {
+        if (!selectedProject) {
+            setDrawerApi(null);
+            setDrawerCurrent(0);
+            setDrawerCount(0);
+        }
+    }, [selectedProject]);
 
     const handleScroll = () => {
         if (scrollRef.current) {
@@ -179,7 +202,7 @@ const ProjectsSection = () => {
     };
 
     return (
-        <section id="projects" className="relative min-h-screen bg-[#FDF6EC] flex items-center justify-center py-24 px-6 overflow-hidden">
+        <section id="projects" className="relative min-h-screen bg-[#FDF6EC] flex items-center justify-center md:py-24 py-16 px-6 overflow-hidden">
             {/* Grain overlay */}
             <div
                 className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-multiply"
@@ -187,7 +210,7 @@ const ProjectsSection = () => {
             />
 
             <div className="relative z-10 w-full max-w-[1400px] mx-auto">
-                <div className="text-center mb-16">
+                <div className="text-center md:mb-16 mb-10">
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -230,7 +253,7 @@ const ProjectsSection = () => {
                     <div
                         ref={scrollRef}
                         onScroll={handleScroll}
-                        className="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide py-10 px-4"
+                        className="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide md:py-10 py-6 px-4"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                         {projects.map((project, i) => (
@@ -243,14 +266,14 @@ const ProjectsSection = () => {
                                 onClick={() => setSelectedProject(project)}
                                 className="group/card flex-shrink-0 w-[85vw] md:w-[400px] snap-center cursor-pointer bg-white border border-[#D4621A]/10 rounded-[2.5rem] overflow-hidden shadow-xl shadow-[#8B5E3C]/10 hover:shadow-2xl hover:shadow-[#D4621A]/20 transition-all duration-500"
                             >
-                                <div className="p-8">
+                                <div className="md:p-8 p-6">
                                     {/* 1. Title */}
-                                    <h3 className="text-2xl md:text-3xl font-black text-[#2C1A0E] mb-6 group-hover/card:text-[#D4621A] transition-colors line-clamp-1">
+                                    <h3 className="text-2xl md:text-3xl font-black text-[#2C1A0E] md:mb-6 mb-4 group-hover/card:text-[#D4621A] transition-colors line-clamp-1">
                                         {project.title}
                                     </h3>
 
                                     {/* 2. Project Image Area */}
-                                    <div className="relative rounded-[1.8rem] overflow-hidden aspect-[16/10] mb-6 bg-[#FDF6EC]">
+                                    <div className="relative rounded-[1.8rem] overflow-hidden aspect-[16/10] md:mb-6 mb-4 bg-[#FDF6EC]">
                                         <img
                                             src={project.image}
                                             alt={project.title}
@@ -301,8 +324,8 @@ const ProjectsSection = () => {
                 <DrawerContent className="bg-[#FDF6EC] border-t border-[#D4621A]/20 rounded-t-[3rem] focus:outline-none">
                     <div className="mx-auto w-full max-w-[1000px] overflow-y-auto max-h-[85vh]">
                         {selectedProject && (
-                            <div className="p-8 md:p-12">
-                                <DrawerHeader className="p-0 mb-10">
+                            <div className="md:p-12 p-6">
+                                <DrawerHeader className="p-0 md:mb-10 mb-6">
                                     <div className="flex items-center justify-between w-full">
                                         <div>
                                             <DrawerTitle className="text-4xl md:text-6xl font-black text-[#2C1A0E] tracking-tight">
@@ -316,10 +339,13 @@ const ProjectsSection = () => {
                                 </DrawerHeader>
 
                                 {/* Content: Stacked Order (Image -> Description -> Tech -> Button) */}
-                                <div className="flex flex-col gap-8 items-center">
+                                <div className="flex flex-col md:gap-8 gap-6 items-center">
                                     {/* 1. Screenshots Carousel (Medium Sized) */}
                                     <div className="w-full max-w-[700px] mx-auto relative group/carousel">
-                                        <Carousel className="w-full rounded-[2rem] overflow-hidden shadow-2xl shadow-black/10">
+                                        <Carousel
+                                            setApi={setDrawerApi}
+                                            className="w-full rounded-[2rem] overflow-hidden shadow-2xl shadow-black/10"
+                                        >
                                             <CarouselContent>
                                                 {selectedProject.screenshots.map((src, idx) => (
                                                     <CarouselItem key={idx}>
@@ -333,10 +359,25 @@ const ProjectsSection = () => {
                                                     </CarouselItem>
                                                 ))}
                                             </CarouselContent>
-                                            {/* Enhanced Next/Prev Buttons */}
-                                            <CarouselPrevious className="left-6 bg-[#D4621A] border-none text-white hover:bg-[#2C1A0E] w-12 h-12 flex items-center justify-center rounded-full shadow-2xl opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 scale-110" />
-                                            <CarouselNext className="right-6 bg-[#D4621A] border-none text-white hover:bg-[#2C1A0E] w-12 h-12 flex items-center justify-center rounded-full shadow-2xl opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 scale-110" />
+                                            {/* Enhanced Next/Prev Buttons - Visible on Mobile, Hover on Desktop */}
+                                            <CarouselPrevious className="md:left-6 left-2 bg-[#D4621A] border-none text-white hover:bg-[#2C1A0E] md:w-12 md:h-12 w-10 h-10 flex items-center justify-center rounded-full shadow-2xl md:opacity-0 md:group-hover/carousel:opacity-100 opacity-100 transition-all duration-300 md:scale-110" />
+                                            <CarouselNext className="md:right-6 right-2 bg-[#D4621A] border-none text-white hover:bg-[#2C1A0E] md:w-12 md:h-12 w-10 h-10 flex items-center justify-center rounded-full shadow-2xl md:opacity-0 md:group-hover/carousel:opacity-100 opacity-100 transition-all duration-300 md:scale-110" />
                                         </Carousel>
+
+                                        {/* Drawer Dots Indicator */}
+                                        <div className="flex justify-center gap-2 mt-4">
+                                            {Array.from({ length: drawerCount }).map((_, i) => (
+                                                <button
+                                                    key={i}
+                                                    onClick={() => drawerApi?.scrollTo(i)}
+                                                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${drawerCurrent === i
+                                                        ? 'bg-[#D4621A] w-6'
+                                                        : 'bg-[#D4621A]/20'
+                                                        }`}
+                                                    aria-label={`Go to slide ${i + 1}`}
+                                                />
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* 2. Description */}
