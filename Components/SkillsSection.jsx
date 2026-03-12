@@ -1,108 +1,162 @@
 "use client";
+import React from 'react';
 import { motion } from 'framer-motion';
+import {
+    Code2, Layout, Palette, Zap,
+    Server, Database, Cpu, Layers,
+    Cloud, Box, Settings, Terminal,
+    FileJson, Workflow, Share2
+} from 'lucide-react';
+import LogoLoop from './LogoLoop';
 
 const skillGroups = [
     {
         category: 'Frontend',
-        color: '#D4621A',
         skills: [
-            { name: 'React', icon: '⚛️' },
-            { name: 'Next.js', icon: '▲' },
-            { name: 'TypeScript', icon: '🔷' },
-            { name: 'Tailwind CSS', icon: '🎨' },
+            { name: 'React', level: 92, icon: <Code2 size={18} /> },
+            { name: 'Next.js', level: 88, icon: <Layout size={18} /> },
+            { name: 'Tailwind CSS', level: 95, icon: <Palette size={18} /> },
+            { name: 'Framer Motion', level: 85, icon: <Zap size={18} /> },
         ],
     },
     {
         category: 'Backend',
-        color: '#2C1A0E',
         skills: [
-            { name: 'Node.js', icon: '🟢' },
-            { name: 'Python', icon: '🐍' },
-            { name: 'Java', icon: '☕' },
-            { name: 'RabbitMQ', icon: '🐇' },
+            { name: 'Node.js', level: 90, icon: <Server size={18} /> },
+            { name: 'Express / NestJS', level: 88, icon: <Database size={18} /> },
+            { name: 'RabbitMQ', level: 78, icon: <Cpu size={18} /> },
+            { name: 'MongoDB / PostgreSQL', level: 85, icon: <Layers size={18} /> },
         ],
     },
     {
-        category: 'DevOps & Infra',
-        color: '#8B5E3C',
+        category: 'DevOps & Cloud',
         skills: [
-            { name: 'Docker', icon: '🐳' },
-            { name: 'Kubernetes', icon: '⚙️' },
-            { name: 'Nginx', icon: '🔀' },
-            { name: 'AWS', icon: '☁️' },
+            { name: 'AWS / Cloudflare', level: 75, icon: <Cloud size={18} /> },
+            { name: 'Docker', level: 82, icon: <Box size={18} /> },
+            { name: 'Kubernetes', level: 70, icon: <Settings size={18} /> },
+            { name: 'Nginx / Bunny.net', level: 80, icon: <Share2 size={18} /> },
         ],
     },
     {
-        category: 'Databases',
-        color: '#6B4F35',
+        category: 'Architecture',
         skills: [
-            { name: 'PostgreSQL', icon: '🐘' },
-            { name: 'MongoDB', icon: '🍃' },
-            { name: 'Redis', icon: '🔴' },
-            { name: 'MySQL', icon: '💾' },
+            { name: 'DSA', level: 85, icon: <FileJson size={18} /> },
+            { name: 'System Design', level: 80, icon: <Workflow size={18} /> },
+            { name: 'Git & Linux', level: 92, icon: <Terminal size={18} /> },
+            { name: 'State Management', level: 88, icon: <Settings size={18} /> },
         ],
     },
 ];
 
+const techLogos = [
+    { src: "/techs/nodejs.svg", alt: "Node.js" },
+    { src: "/techs/python.png", alt: "Python" },
+    { src: "/techs/docker.png", alt: "Docker" },
+    { src: "/techs/rabbitmq.png", alt: "RabbitMQ" },
+    { src: "/techs/k8s.png", alt: "Kubernetes" },
+    { src: "/techs/nextjs.webp", alt: "Next.js" },
+    { src: "/techs/ts.webp", alt: "TypeScript" },
+    { src: "/techs/nginx.webp", alt: "Nginx" },
+    { src: "/techs/bunny.png", alt: "BunnyCDN" },
+];
+
 const SkillsSection = () => {
     return (
-        <section id="skills" className="relative min-h-screen bg-[#2C1A0E] flex items-center justify-center py-24 px-6">
+        <section id="skills" className="relative min-h-screen bg-[#2C1A0E] flex flex-col items-center justify-center md:py-24 py-14 px-6 overflow-hidden">
+            {/* Grain overlay */}
             <div
                 className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-overlay"
                 style={{ backgroundImage: `url('/grainyImage.avif')`, backgroundSize: 'cover' }}
             />
 
-            <div className="relative z-10 w-[95%] max-w-[1200px] mx-auto">
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-[#D4621A] font-bold tracking-[0.3em] text-sm uppercase mb-4"
-                >
-                    Skills & Tech
-                </motion.p>
+            {/* Ambient Background Glows */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4621A]/5 blur-[120px] rounded-full pointer-events-none" />
 
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
-                    className="text-5xl md:text-6xl font-black text-[#FDF6EC] leading-tight mb-16"
-                >
-                    My <span className="text-[#D4621A]">toolbox.</span>
-                </motion.h2>
+            <div className="relative z-10 w-full max-w-[1240px] mx-auto">
+                <div className="text-center mb-20">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-[#D4621A] font-bold tracking-[0.4em] text-sm uppercase mb-4"
+                    >
+                        Expertise
+                    </motion.p>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-5xl md:text-7xl font-black text-[#FDF6EC] tracking-tighter"
+                    >
+                        My Technical <span className="text-[#D4621A]">Arsenal.</span>
+                    </motion.h2>
+                </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 -mt-6">
                     {skillGroups.map((group, gi) => (
                         <motion.div
                             key={gi}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: gi * 0.1 }}
-                            className="bg-[#FDF6EC]/5 border border-white/10 rounded-[1.5rem] p-6 hover:bg-[#FDF6EC]/10 transition-colors duration-300"
+                            transition={{ duration: 0.7, delay: gi * 0.1 }}
+                            className="bg-gradient-to-br from-white/[0.05] to-transparent border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-sm relative group overflow-hidden"
                         >
-                            <div
-                                className="w-3 h-3 rounded-full mb-4"
-                                style={{ backgroundColor: group.color }}
-                            />
-                            <h3 className="text-[#FDF6EC] font-bold text-lg mb-5">{group.category}</h3>
-                            <div className="flex flex-col gap-3">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#D4621A]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <h3 className="text-[#FDF6EC] font-black text-xl mb-8 relative z-10 flex items-center gap-3">
+                                <span className="w-1.5 h-6 bg-[#D4621A] rounded-full" />
+                                {group.category}
+                            </h3>
+
+                            <div className="space-y-8 relative z-10">
                                 {group.skills.map((skill, si) => (
-                                    <motion.div
-                                        key={si}
-                                        whileHover={{ x: 6 }}
-                                        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                                        className="flex items-center gap-3 text-[#C8A882] text-sm font-medium"
-                                    >
-                                        <span className="text-xl">{skill.icon}</span>
-                                        <span>{skill.name}</span>
-                                    </motion.div>
+                                    <div key={si} className="space-y-3">
+                                        <div className="flex items-center justify-between text-[#C8A882]">
+                                            <div className="flex items-center gap-3">
+                                                <div className="text-[#D4621A] opacity-80">{skill.icon}</div>
+                                                <span className="text-sm font-bold tracking-wide uppercase">{skill.name}</span>
+                                            </div>
+                                            <span className="text-xs font-black text-[#D4621A]">{skill.level}%</span>
+                                        </div>
+
+                                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: `${skill.level}%` }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 1.5, ease: "circOut", delay: gi * 0.1 + si * 0.1 }}
+                                                className="h-full bg-gradient-to-r from-[#D4621A] via-[#E8913A] to-[#D4621A] relative"
+                                            >
+                                                <motion.div
+                                                    animate={{ x: ['-100%', '200%'] }}
+                                                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-1/2"
+                                                />
+                                            </motion.div>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Logo Loop Section */}
+                <div className="mt-6 pt-6 border-t border-white/5">
+                    <p className="text-center text-[#6B4F35] text-xs font-bold tracking-[.4em] uppercase mb-4">Powering modern architecture</p>
+                    <LogoLoop
+                        logos={techLogos}
+                        speed={50}
+                        direction="left"
+                        logoHeight={45}
+                        gap={80}
+                        scaleOnHover
+                        fadeOut
+                    />
+                </div>
+
             </div>
         </section>
     );
