@@ -54,7 +54,7 @@ const ContactSection = () => {
     ];
 
     return (
-        <section id="contact" className="relative min-h-screen bg-[#2C1A0E] flex items-center justify-center py-24 px-6 overflow-hidden">
+        <section id="contact" className="relative min-h-screen bg-[#2C1A0E] flex items-center justify-center md:py-24 py-14 px-6 overflow-hidden">
             {/* Grain overlay */}
             <div
                 className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-overlay"
@@ -70,14 +70,6 @@ const ContactSection = () => {
 
                     {/* Left Column — Text & Info */}
                     <div className="flex flex-col">
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-[#D4621A] font-bold tracking-[0.3em] text-xs md:text-sm uppercase mb-4"
-                        >
-                            Get in Touch
-                        </motion.p>
 
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}

@@ -62,7 +62,7 @@ const techLogos = [
 
 const SkillsSection = () => {
     return (
-        <section id="skills" className="relative min-h-screen bg-[#2C1A0E] flex flex-col items-center justify-center md:py-24 py-14 px-6 overflow-hidden">
+        <section id="skills" className="relative min-h-screen bg-[#2C1A0E] flex flex-col items-center justify-center md:pt-24 pt-16 md:pb-24 pb-10 px-6 overflow-hidden">
             {/* Grain overlay */}
             <div
                 className="absolute inset-0 z-0 opacity-20 pointer-events-none mix-blend-overlay"
@@ -74,14 +74,6 @@ const SkillsSection = () => {
 
             <div className="relative z-10 w-full max-w-[1240px] mx-auto">
                 <div className="text-center mb-20">
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-[#D4621A] font-bold tracking-[0.4em] text-sm uppercase mb-4"
-                    >
-                        Expertise
-                    </motion.p>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
