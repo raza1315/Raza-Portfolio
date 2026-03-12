@@ -125,7 +125,7 @@ const Navbar = () => {
                 >
                     {/* Shine sweep */}
                     <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                    <span className="relative z-10">Contact ✉</span>
+                    <span className="relative z-10">Contact</span>
                 </motion.a>
             </motion.nav>
 
