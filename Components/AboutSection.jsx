@@ -20,7 +20,7 @@ const AboutSection = () => {
     const [selectedImg, setSelectedImg] = useState(null);
 
     return (
-        <section id="about" className="relative min-h-screen bg-[#C8A882] flex items-center justify-center py-24 px-6">
+        <section id="about" className="relative min-h-screen bg-[#C8A882] flex items-center justify-center md:py-24 py-12 md:px-6 px-2">
             {/* Grain overlay */}
             <div
                 className="absolute inset-0 z-0 opacity-30 pointer-events-none mix-blend-overlay"
@@ -29,7 +29,7 @@ const AboutSection = () => {
 
             <div className="relative z-10 w-[95%] max-w-[1240px] mx-auto">
                 {/* Section Label */}
-                <motion.p
+                {/* <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -37,7 +37,7 @@ const AboutSection = () => {
                     className="text-[#D4621A] font-bold tracking-[0.3em] text-sm uppercase mb-4"
                 >
                     About Me
-                </motion.p>
+                </motion.p> */}
 
                 <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
                     {/* Left — Text */}

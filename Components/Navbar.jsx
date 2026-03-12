@@ -134,13 +134,13 @@ const Navbar = () => {
                 initial={{ y: -60, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7 }}
-                className={`fixed top-0 left-0 right-0 z-[999] flex md:hidden items-center justify-between px-5 py-3 transition-all duration-300 ${scrolled || mobileOpen
+                className={`fixed top-0 left-0 right-0 z-[999] flex md:hidden items-center justify-between h-14 px-5 transition-all duration-300 ${scrolled || mobileOpen
                     ? 'bg-[#FDF6EC]/95 backdrop-blur-xl border-b border-[#D4621A]/10 shadow-md'
                     : 'bg-transparent'
                     }`}
             >
                 {/* Mobile Logo */}
-                <div className="h-9 overflow-hidden flex items-center w-20">
+                <div className="h-8 overflow-hidden flex items-center w-20">
                     <AnimatePresence mode="wait">
                         <motion.span
                             key={logoIndex}
@@ -161,7 +161,7 @@ const Navbar = () => {
                     whileTap={{ scale: 0.92 }}
                     className={`flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-300 ${scrolled || mobileOpen
                         ? 'bg-[#D4621A]/10 text-[#D4621A] border border-[#D4621A]/20'
-                        : 'bg-white/20 text-white border border-white/30'
+                        : 'bg-white/20 text-[#2C1A0E] border border-white/30'
                         }`}
                 >
                     <AnimatePresence mode="wait">
@@ -186,7 +186,8 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -8, scale: 0.97 }}
                         transition={{ duration: 0.22, ease: 'easeOut' }}
-                        className="fixed top-[56px] left-4 right-4 z-[998] md:hidden flex flex-col gap-1 p-3 rounded-2xl bg-[#FDF6EC]/97 backdrop-blur-xl border border-white/80 shadow-2xl shadow-[#8B5E3C]/20"
+                        style={{ top: '56px' }}
+                        className="fixed left-4 right-4 z-[998] md:hidden flex flex-col gap-1 p-3 rounded-2xl bg-[#FDF6EC]/97 backdrop-blur-xl border border-white/80 shadow-2xl shadow-[#8B5E3C]/20"
                     >
                         {[...navLinks, { label: 'Contact', href: '#contact' }].map((link, i) => (
                             <motion.a

@@ -65,15 +65,15 @@ const HomePage = () => {
             />
 
             {/* Inner card */}
-            <div className="relative z-10 w-[95%] max-w-[1400px] h-[92vh] mt-[4vh] bg-gradient-to-br from-[#FFFDF9] via-[#FDF6EC]/95 to-[#FFF0DC]/90 rounded-[2rem] border border-white/60 shadow-2xl overflow-hidden shadow-[#8B5E3C]/20 flex flex-col justify-between">
+            <div className="relative z-10 w-[95%] max-w-[1400px] min-h-[92vh] md:h-[92vh] md:mt-[4vh] mt-[2vh] bg-gradient-to-br from-[#FFFDF9] via-[#FDF6EC]/95 to-[#FFF0DC]/90 rounded-[2rem] border border-white/60 shadow-2xl overflow-hidden shadow-[#8B5E3C]/20 flex flex-col justify-between py-0">
 
                 {/* ── Big Name — scales up from center ── */}
-                <div className="flex-1 flex flex-col justify-center items-center relative w-full mt-10 pt-20">
+                <div className="flex-1 flex flex-col justify-center items-center relative w-full mt-4 md:mt-10 pt-10 md:pt-20">
                     <motion.div
                         {...scaleUp(0.1)}
                         className="relative z-10 w-full px-4 text-center"
                     >
-                        <h1 className="font-black text-[12vw] md:text-[7vw] tracking-tighter leading-[0.8] text-[#2C1A0E] select-none flex flex-wrap justify-center gap-x-2 md:gap-x-6 items-center">
+                        <h1 className="font-black text-[13vw] sm:text-[10vw] md:text-[7vw] tracking-tighter leading-[0.9] md:leading-[0.8] text-[#2C1A0E] select-none flex flex-wrap justify-center gap-x-2 md:gap-x-6 items-center">
                             {/* "SYED" — slides up */}
                             <motion.span {...fromBottom(0.25)}>SYED</motion.span>
 
@@ -101,15 +101,15 @@ const HomePage = () => {
                 </div>
 
                 {/* ── Bottom Row ── */}
-                <div className="w-full relative z-20 flex flex-col md:flex-row justify-between items-center p-8 md:p-12 mb-4 h-full">
+                <div className="w-full relative z-20 flex flex-col md:flex-row justify-between items-center p-6 md:p-12 mb-4 h-full gap-8 md:gap-0">
 
-                    {/* Left — slides in from left */}
-                    <div className="flex flex-col gap-10 max-w-xl w-full self-center -mt-20 ml-36">
+                    {/* Left — tagline + socials + button */}
+                    <div className="flex flex-col gap-6 md:gap-10 max-w-xl w-full text-center md:text-left md:ml-36">
 
-                        {/* Tagline — from left */}
+                        {/* Tagline */}
                         <motion.div
                             {...fromLeft(0.5)}
-                            className="flex items-start gap-4 z-10"
+                            className="flex flex-col items-center md:items-start gap-4 z-10"
                         >
                             <div className="text-[#6B4F35] font-medium leading-relaxed">
                                 <TextType
@@ -121,12 +121,12 @@ const HomePage = () => {
                                     deletingSpeed={50}
                                     variableSpeedEnabled={false}
                                     cursorBlinkDuration={0.6}
-                                    className="block font-black text-[#D4621A] mb-3 text-[1.65rem] md:text-4xl lg:text-5xl tracking-tight whitespace-nowrap"
+                                    className="block font-black text-[#D4621A] mb-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight md:whitespace-nowrap"
                                 />
-                                {/* Description — from left, slightly later */}
+                                {/* Description */}
                                 <motion.p
                                     {...fromLeft(0.65)}
-                                    className="text-lg md:text-xl font-medium"
+                                    className="text-sm sm:text-base md:text-lg lg:text-xl font-medium"
                                 >
                                     Building high-performance applications with React, Next.js, Node.js, MongoDB, RabbitMQ, Bunny.net, AWS, Docker, and Kubernetes. Passionate about scalable backends, seamless cloud deployments, and cutting-edge digital solutions.
                                 </motion.p>
@@ -134,10 +134,10 @@ const HomePage = () => {
                         </motion.div>
 
                         {/* Social icons + button */}
-                        <div className="flex flex-col gap-8">
+                        <div className="flex flex-col items-center md:items-start gap-6 md:gap-8">
 
-                            {/* Social icons — pop up from bottom, staggered */}
-                            <div className="flex items-center gap-7">
+                            {/* Social icons */}
+                            <div className="flex items-center justify-center md:justify-start gap-4 sm:gap-7 flex-wrap">
                                 {socials.map((social, i) => (
                                     <motion.a
                                         key={i}
@@ -153,7 +153,7 @@ const HomePage = () => {
                                             ease: [0.34, 1.56, 0.64, 1],
                                         }}
                                         whileTap={{ scale: 0.9, transition: { duration: 0.1 } }}
-                                        className="w-12 h-12 rounded-full flex items-center justify-center cursor-pointer hover:scale-125 active:scale-95 transition-transform duration-200"
+                                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center cursor-pointer hover:scale-125 active:scale-95 transition-transform duration-200"
                                         style={{ backgroundColor: social.bg, boxShadow: `0 6px 20px ${social.bg}66` }}
                                     >
                                         {social.svg}
@@ -161,14 +161,13 @@ const HomePage = () => {
                                 ))}
                             </div>
 
-                            {/* Learn More — slides up from bottom */}
+                            {/* Learn More */}
                             <motion.a
                                 initial={{ opacity: 0, y: 28, scale: 0.8 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 transition={{ delay: 1.15, duration: 0.55, ease: [0.34, 1.56, 0.64, 1] }}
                                 href="#about"
-                                whileTap={{ scale: 0.95, transition: { duration: 0.1 } }}
-                                className="relative inline-flex items-center gap-2 self-start px-7 py-3.5 rounded-2xl font-bold text-white text-base overflow-hidden group shadow-[0_8px_30px_rgba(212,98,26,0.4)] hover:scale-110 active:scale-95 transition-transform duration-200"
+                                className="relative inline-flex items-center gap-2 px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-2xl font-bold text-white text-sm sm:text-base overflow-hidden group shadow-[0_8px_30px_rgba(212,98,26,0.4)] hover:scale-110 active:scale-95 transition-transform duration-200"
                                 style={{ background: 'linear-gradient(135deg, #D4621A 0%, #E8913A 50%, #D4621A 100%)' }}
                             >
                                 <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -187,28 +186,29 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    {/* Right — photo slides in from right */}
-                    <div className="flex flex-col items-center md:items-end mt-16 md:mt-0 self-center md:self-end">
+                    {/* Right — photo */}
+                    <div className="flex flex-col items-center mt-4 md:mt-0 self-center md:self-end">
                         <motion.div
                             {...fromRight(0.6)}
-                            className="relative flex justify-end w-full md:w-auto pb-6 md:pb-8 pr-2"
+                            className="relative flex justify-center md:justify-end w-full md:w-auto pb-4 md:pb-8 md:pr-10"
                         >
                             <motion.div
                                 animate={{ y: [0, -10, 0] }}
-                                whileHover={{ scale: 1.08, rotate: -3 }}
+                                whileHover={{ scale: 1.05, rotate: -2 }}
                                 transition={{
                                     y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
                                     scale: { type: "spring", stiffness: 400, damping: 20 },
                                     rotate: { type: "spring", stiffness: 400, damping: 20 },
                                 }}
-                                className="relative z-10 bg-[#FDF8F0] p-3 md:p-4 pb-0 rounded-t-[3rem] rounded-b-[2rem] origin-bottom cursor-pointer -rotate-2
-                                           shadow-[-10px_-10px_30px_rgba(255,255,255,0.9),_10px_10px_30px_rgba(180,150,100,0.25),_inset_2px_2px_5px_rgba(255,255,255,1),_inset_-3px_-3px_7px_rgba(200,170,130,0.2)]
-                                           border border-white/70 mr-10"
+                                className="relative z-10 bg-[#FDF8F0] p-2 md:p-4 pb-0 rounded-t-[2.5rem] md:rounded-t-[3rem] rounded-b-[1.5rem] md:rounded-b-[2rem] origin-bottom cursor-pointer -rotate-1 md:-rotate-2
+                                           shadow-[-5px_-5px_15px_rgba(255,255,255,0.9),_5px_5px_15px_rgba(180,150,100,0.25),_inset_1px_1px_3px_rgba(255,255,255,1),_inset_-2px_-2px_4px_rgba(200,170,130,0.2)]
+                                           md:shadow-[-10px_-10px_30px_rgba(255,255,255,0.9),_10px_10px_30px_rgba(180,150,100,0.25),_inset_2px_2px_5px_rgba(255,255,255,1),_inset_-3px_-3px_7px_rgba(200,170,130,0.2)]
+                                           border border-white/70"
                             >
                                 <img
                                     src="/myPP.jpg"
                                     alt="Syed Raza Mehdi Rizvi"
-                                    className="w-[220px] md:w-[280px] lg:w-[350px] object-contain object-bottom filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] pointer-events-none rounded-2xl"
+                                    className="w-[180px] sm:w-[220px] md:w-[280px] lg:w-[320px] object-contain object-bottom filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.15)] pointer-events-none rounded-2xl"
                                 />
                             </motion.div>
                         </motion.div>
