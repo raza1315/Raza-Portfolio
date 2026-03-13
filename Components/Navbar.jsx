@@ -9,6 +9,7 @@ const navLinks = [
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
     { label: 'Certificates', href: '#certificates' },
+    { label: 'Hackathons', href: '#hackathons' },
 ];
 
 const logoTexts = ['Raza', '라자'];
